@@ -6,16 +6,16 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.katas.FibonacciGenerator.FibonacciGenerator;
+import com.katas.FibonacciGenerator.FibonacciGeneratorV1;
 
 import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
-public class FibonacciShould {
+ class FibonacciGeneratorV1Should {
 
 	@Test
 	public void return_0_for_first_element() {
-		FibonacciGenerator fiboGenerator = new FibonacciGenerator();
+		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(1);
 
@@ -24,7 +24,7 @@ public class FibonacciShould {
 
 	@Test
 	public void return_1_for_second_element() {
-		FibonacciGenerator fiboGenerator = new FibonacciGenerator();
+		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(2);
 
@@ -33,7 +33,7 @@ public class FibonacciShould {
 
 	@Test
 	public void return_1_for_third_element() {
-		FibonacciGenerator fiboGenerator = new FibonacciGenerator();
+		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(3);
 
@@ -42,7 +42,7 @@ public class FibonacciShould {
 
 	@Test
 	public void return_2_for_4th_element() {
-		FibonacciGenerator fiboGenerator = new FibonacciGenerator();
+		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(4);
 
@@ -51,7 +51,7 @@ public class FibonacciShould {
 
 	@Test
 	public void return_3_for_5th_element() {
-		FibonacciGenerator fiboGenerator = new FibonacciGenerator();
+		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(5);
 
@@ -61,7 +61,7 @@ public class FibonacciShould {
 	@ParameterizedTest
 	@CsvSource({ "0,1", "1,2", "1,3", "2,4", "3,5", "5,6", "8,7", "13,8", "21,9", "34,10" })
 	public void return_correct_result_for_given_element(int expectedResult, int from) {
-		FibonacciGenerator fiboGenerator = new FibonacciGenerator();
+		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(from);
 

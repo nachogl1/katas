@@ -1,22 +1,21 @@
 package com.katas.fizzbuzzTests;
 
+import com.katas.fizzbuzz.FizzbuzzParserV1;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import static org.assertj.core.api.Assertions.*;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.katas.fizzbuzz.FizzbuzzParser;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-public class FizzBuzzParserShould {
+ class FizzBuzzParserV1Should {
 
 	@Test
 	public void return_1_if_parsing_1() {
 
-		FizzbuzzParser fizzbuzzParser = new FizzbuzzParser();
+		FizzbuzzParserV1 fizzbuzzParser = new FizzbuzzParserV1();
 
 		assertThat(fizzbuzzParser.parse(1)).isEqualTo(1);
 	}
@@ -24,7 +23,7 @@ public class FizzBuzzParserShould {
 	@Test
 	public void return_Fizz_if_parsing_3() {
 
-		FizzbuzzParser fizzbuzzParser = new FizzbuzzParser();
+		FizzbuzzParserV1 fizzbuzzParser = new FizzbuzzParserV1();
 
 		assertThat(fizzbuzzParser.parse(3)).isEqualTo("Fizz");
 	}
@@ -32,7 +31,7 @@ public class FizzBuzzParserShould {
 	@Test
 	public void return_Buzz_if_parsing_5() {
 
-		FizzbuzzParser fizzbuzzParser = new FizzbuzzParser();
+		FizzbuzzParserV1 fizzbuzzParser = new FizzbuzzParserV1();
 
 		assertThat(fizzbuzzParser.parse(5)).isEqualTo("Buzz");
 	}
@@ -41,7 +40,7 @@ public class FizzBuzzParserShould {
 	@CsvSource({ "3", "6", "9", "12", "15" })
 	public void return_result_that_contains_Fizz_if_divisible_by_3(int i) {
 
-		FizzbuzzParser fizzbuzzParser = new FizzbuzzParser();
+		FizzbuzzParserV1 fizzbuzzParser = new FizzbuzzParserV1();
 
 		String result = fizzbuzzParser.parse(i).toString();
 
@@ -52,7 +51,7 @@ public class FizzBuzzParserShould {
 	@CsvSource({ "5", "10", "15" })
 	public void return_result_that_contains_Buzz_if_divisible_by_5(int i) {
 
-		FizzbuzzParser fizzbuzzParser = new FizzbuzzParser();
+		FizzbuzzParserV1 fizzbuzzParser = new FizzbuzzParserV1();
 
 		String result = fizzbuzzParser.parse(i).toString();
 
@@ -63,7 +62,7 @@ public class FizzBuzzParserShould {
 	@CsvSource({ "15", "30", "45" })
 	public void return_result_that_contains_FizzBuzz_if_divisible_by_15(int i) {
 
-		FizzbuzzParser fizzbuzzParser = new FizzbuzzParser();
+		FizzbuzzParserV1 fizzbuzzParser = new FizzbuzzParserV1();
 
 		String result = fizzbuzzParser.parse(i).toString();
 

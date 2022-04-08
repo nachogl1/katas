@@ -1,6 +1,6 @@
 package com.katas.FibonacciGenerator;
 
-public class FibonacciGenerator {
+public class FibonacciGeneratorV1 {
 
 	public int from(int from) {
 

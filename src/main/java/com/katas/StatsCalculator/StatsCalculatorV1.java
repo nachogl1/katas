@@ -2,7 +2,7 @@ package com.katas.StatsCalculator;
 
 import java.util.Arrays;
 
-public class StatsCalculator {
+public class StatsCalculatorV1 {
 
 	public int getLengthOf(int[] arrayOfNumbers) {
 		return arrayOfNumbers.length;

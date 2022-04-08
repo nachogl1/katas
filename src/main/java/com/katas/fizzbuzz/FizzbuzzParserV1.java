@@ -1,6 +1,6 @@
 package com.katas.fizzbuzz;
 
-public class FizzbuzzParser {
+public class FizzbuzzParserV1 {
 
 	public Object parse(int i) {
 		if (i % 15 == 0) {
