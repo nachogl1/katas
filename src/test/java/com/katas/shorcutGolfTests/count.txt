@@ -1,0 +1,5 @@
+KATAS TDD Shortcut golf:
+
+FizzBuzz: 4 strikes
+LeapYear: 2 strikes
+StatsCalculator: 1 strike
