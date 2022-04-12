@@ -46,7 +46,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 		StatsCalculatorV1 statsCalculator = new StatsCalculatorV1();
 
 		int result = statsCalculator.getLowestOf(arrayOfNumbers);
-
 		assertThat(result).isEqualTo(2);
 	}
 
