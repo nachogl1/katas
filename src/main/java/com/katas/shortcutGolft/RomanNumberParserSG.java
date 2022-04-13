@@ -1,4 +1,6 @@
-package com.katas.RomanNumberParserV1;
+package com.katas.shortcutGolft;
+
+import com.katas.RomanNumberParserV1.RomanNumbersEnum;
 
 public class RomanNumberParserSG {
     public String parse(int source) {

@@ -1,6 +1,6 @@
 package com.katas.shorcutGolfTests;
 
-import com.katas.LeapYearChecker.LeapYearSGChecker;
+import com.katas.shortcutGolft.LeapYearSGChecker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

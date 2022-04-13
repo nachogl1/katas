@@ -1,4 +1,4 @@
-package com.katas.fizzbuzz;
+package com.katas.shortcutGolft;
 
 public class FizzBuzzSG {
     public String generate(int from) {

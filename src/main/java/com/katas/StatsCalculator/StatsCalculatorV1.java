@@ -3,6 +3,7 @@ package com.katas.StatsCalculator;
 import java.util.Arrays;
 
 public class StatsCalculatorV1 {
+	//This kata uses streams but there is another version that uses algos with lower abstractions
 
 	public int getLengthOf(int[] arrayOfNumbers) {
 		return arrayOfNumbers.length;

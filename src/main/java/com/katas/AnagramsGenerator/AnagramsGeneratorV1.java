@@ -1,14 +1,39 @@
 package com.katas.AnagramsGenerator;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class AnagramsGeneratorV1 {
 
     public String rotateString(String word, int numberRotations) {
-        return StringUtils.rotate(word, numberRotations);
+
+        if (numberRotations > 0) {
+            word = processRightRotation(word, numberRotations);
+        }
+
+        if (numberRotations < 0) {
+            word = processLeftRotation(word, numberRotations);
+        }
+
+        return word;
+    }
+
+    private String processLeftRotation(String word, int numberRotations) {
+        numberRotations = numberRotations * (-1);
+
+        while (numberRotations > 0) {
+            word = word.substring(1) + word.substring(0, 1);
+            numberRotations--;
+        }
+        return word;
+    }
+
+    private String processRightRotation(String word, int numberRotations) {
+        while (numberRotations > 0) {
+            word = word.substring(word.length() - 1) + word.substring(0, word.length() - 1);
+            numberRotations--;
+        }
+        return word;
     }
 
     public List<String> getAllPossibleRotationsForString(String str) {
@@ -26,6 +51,6 @@ public class AnagramsGeneratorV1 {
 
 
     public List<String> getAnagramsListFromString(String stringToProcess) throws Exception {
-       throw new Exception("Method not finished");
+        throw new Exception("Method not finished");
     }
 }

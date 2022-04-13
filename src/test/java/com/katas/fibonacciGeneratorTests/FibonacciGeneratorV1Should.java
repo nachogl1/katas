@@ -1,5 +1,6 @@
 package com.katas.fibonacciGeneratorTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -13,9 +14,15 @@ import static org.assertj.core.api.Assertions.*;
 @RunWith(SpringRunner.class)
  class FibonacciGeneratorV1Should {
 
+	private FibonacciGeneratorV1 fiboGenerator;
+
+	@BeforeEach
+	void setUp() {
+		fiboGenerator = new FibonacciGeneratorV1();
+	}
+
 	@Test
 	public void return_0_for_first_element() {
-		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(1);
 
@@ -24,7 +31,6 @@ import static org.assertj.core.api.Assertions.*;
 
 	@Test
 	public void return_1_for_second_element() {
-		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(2);
 
@@ -33,7 +39,6 @@ import static org.assertj.core.api.Assertions.*;
 
 	@Test
 	public void return_1_for_third_element() {
-		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(3);
 
@@ -42,7 +47,6 @@ import static org.assertj.core.api.Assertions.*;
 
 	@Test
 	public void return_2_for_4th_element() {
-		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(4);
 
@@ -51,7 +55,6 @@ import static org.assertj.core.api.Assertions.*;
 
 	@Test
 	public void return_3_for_5th_element() {
-		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(5);
 
@@ -61,7 +64,6 @@ import static org.assertj.core.api.Assertions.*;
 	@ParameterizedTest
 	@CsvSource({ "0,1", "1,2", "1,3", "2,4", "3,5", "5,6", "8,7", "13,8", "21,9", "34,10" })
 	public void return_correct_result_for_given_element(int expectedResult, int from) {
-		FibonacciGeneratorV1 fiboGenerator = new FibonacciGeneratorV1();
 
 		int result = fiboGenerator.from(from);
 

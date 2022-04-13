@@ -1,4 +1,4 @@
-package com.katas.LeapYearChecker;
+package com.katas.shortcutGolft;
 
 public class LeapYearSGChecker {
     public boolean isLeapYear(int year) {

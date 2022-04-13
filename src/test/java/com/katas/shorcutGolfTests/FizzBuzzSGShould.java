@@ -1,6 +1,6 @@
 package com.katas.shorcutGolfTests;
 
-import com.katas.fizzbuzz.FizzBuzzSG;
+import com.katas.shortcutGolft.FizzBuzzSG;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

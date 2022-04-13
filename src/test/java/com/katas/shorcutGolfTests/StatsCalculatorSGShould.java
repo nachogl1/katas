@@ -1,6 +1,6 @@
 package com.katas.shorcutGolfTests;
 
-import com.katas.StatsCalculator.StatsCalculatorSG;
+import com.katas.shortcutGolft.StatsCalculatorSG;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

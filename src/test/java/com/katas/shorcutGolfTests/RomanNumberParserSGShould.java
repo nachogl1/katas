@@ -1,6 +1,6 @@
 package com.katas.shorcutGolfTests;
 
-import com.katas.RomanNumberParserV1.RomanNumberParserSG;
+import com.katas.shortcutGolft.RomanNumberParserSG;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

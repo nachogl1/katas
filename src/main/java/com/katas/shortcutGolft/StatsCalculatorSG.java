@@ -1,4 +1,4 @@
-package com.katas.StatsCalculator;
+package com.katas.shortcutGolft;
 
 public class StatsCalculatorSG {
 
