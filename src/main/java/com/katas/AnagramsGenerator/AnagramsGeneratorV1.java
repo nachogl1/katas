@@ -12,7 +12,7 @@ public class AnagramsGeneratorV1 {
         }
 
         if (numberRotations < 0) {
-            word = processLeftRotation(word, numberRotations);
+            word = processLeftRotation2(word, numberRotations);
         }
 
         return word;
@@ -28,12 +28,26 @@ public class AnagramsGeneratorV1 {
         return word;
     }
 
+    private String processLeftRotation2(String word, int numberRotations) {
+        numberRotations = numberRotations * (-1);
+
+        while (numberRotations > 0) {
+            word = word.replaceAll("(^.)(.+)", "$2$1");
+            numberRotations--;
+        }
+        return word;
+    }
+
     private String processRightRotation(String word, int numberRotations) {
         while (numberRotations > 0) {
             word = word.substring(word.length() - 1) + word.substring(0, word.length() - 1);
             numberRotations--;
         }
         return word;
+    }
+
+    private String processRightRotation2(String word, int numberRotations) throws Exception {
+        throw new Exception("Method not finished");
     }
 
     public List<String> getAllPossibleRotationsForString(String str) {
