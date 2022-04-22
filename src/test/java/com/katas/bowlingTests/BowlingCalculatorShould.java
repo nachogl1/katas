@@ -34,9 +34,21 @@ public class BowlingCalculatorShould {
 
     @Test
     void calculate_score_for_spare() {
-        int result = bowlingCalculator.calculateScore("2/|22|22|22|22|22|22|22|22|22||");
+        int result = bowlingCalculator.calculateScore("22|22|22|22|22|22|22|22|22|2/||2");
         assertThat(result).isEqualTo(48);
-
     }
+
+    @Test
+    void calculate_score_for_strike() {
+        int result = bowlingCalculator.calculateScore("22|22|22|22|22|22|22|22|22|X||22");
+        assertThat(result).isEqualTo(50);
+    }
+
+    @Test
+    void calculate_score_for_perfect_game() {
+        int result = bowlingCalculator.calculateScore("X|X|X|X|X|X|X|X|X|X||XX");
+        assertThat(result).isEqualTo(300);
+    }
+
 
 }
