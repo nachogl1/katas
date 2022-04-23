@@ -3,11 +3,21 @@ package com.katas.TicTacToeGameTest;
 import com.katas.ticTacToeGame.TicTacToeGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import javax.transaction.NotSupportedException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+//OLD
 public class TicTacToeGameShould {
-
+//quick win not detected..
+    //too many elemtns in my class
+    public static final String SEPARATOR = ":";
+    public static final String NO_PLAYER = "NONE";
+    public static final String PLAYER_X = "X";
+    public static final String PLAYER_O = "O";
     private TicTacToeGame ticTacToeGame;
 
     @BeforeEach
@@ -16,36 +26,41 @@ public class TicTacToeGameShould {
     }
 
     @Test
-    void finish_with_draw_with_all_cells_taken() throws Exception {
-        ticTacToeGame.moveUserToPosition("O",1);
-        ticTacToeGame.moveUserToPosition("O",2);
-        ticTacToeGame.moveUserToPosition("X",3);
-        ticTacToeGame.moveUserToPosition("X",4);
-        ticTacToeGame.moveUserToPosition("X",5);
-        ticTacToeGame.moveUserToPosition("O",6);
-        ticTacToeGame.moveUserToPosition("O",7);
-        ticTacToeGame.moveUserToPosition("X",8);
-        ticTacToeGame.moveUserToPosition("X",9);
+    void return_true_if_game_valid() {
 
-        boolean resultIsFinished = ticTacToeGame.isFinished();
-        String resultWinner = ticTacToeGame.getWinner();
+        String moves = "1|2|3|4|5|6|7|8|9";
 
-        assertThat(resultIsFinished).isTrue();
-        assertThat(resultWinner).isEqualTo("NONE");
+        String game = PLAYER_X + SEPARATOR + moves;
+        ticTacToeGame.initGame(game);
+        boolean result = ticTacToeGame.isValid();
 
+        assertThat(result).isTrue();
     }
 
-    @Test
-    void finish_if_player_gets_column() throws Exception {
-        ticTacToeGame.moveUserToPosition("X", 1);
-        ticTacToeGame.moveUserToPosition("X", 4);
-        ticTacToeGame.moveUserToPosition("X", 7);
+    @ParameterizedTest
+    @CsvSource({"X,1|2|3|4|5|6|7|8|9|1", "X,1|2|3|4|5|6|7|8", "M,1|2|3|4|5|6|7|8|9", "X,1|2|3|4|5|6|7|8|P", "X,1|2|3|4|5|6|7|.|9", "X,1|2|3|4|5|6|7|8|8"})
+    void return_false_if_game_not_valid(String firstPlayerToMove, String moves) {
 
-        boolean resultIsFinished = ticTacToeGame.isFinished();
-        String resultWinner = ticTacToeGame.getWinner();
+        String game = firstPlayerToMove + SEPARATOR + moves;
 
-        assertThat(resultIsFinished).isTrue();
-        assertThat(resultWinner).isEqualTo("X");
+        ticTacToeGame.initGame(game);
+        boolean result = ticTacToeGame.isValid();
+
+        assertThat(result).isFalse();
+    }
+
+    @ParameterizedTest
+    @CsvSource({"O,1|2|4|3|7|5|8|6|9"})
+    void be_valid_and_return_winner_if_column_completed(String firstPlayerToMove, String moves) throws NotSupportedException {
+        String game = firstPlayerToMove + SEPARATOR + moves;
+
+        ticTacToeGame.initGame(game);
+        boolean result = ticTacToeGame.isValid();
+        String winner = ticTacToeGame.checkWinner();
+
+        assertThat(result).isTrue();
+        assertThat(winner).isEqualTo(PLAYER_X);
+
 
     }
 }
