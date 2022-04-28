@@ -3,12 +3,12 @@ package com.katas.ticTacToeGame;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TTTGame {
+public class TicTacToeGame {
 
     public static final int TOTAL_CELLS = 9;
     private Map<Integer, String> gameTable = new HashMap<>();
-    private boolean isDone = false;
-    private String winner = "NONE";
+    private boolean isDone = false;//DRY
+    private String winner = "NONE";//map linked list internally;
 
     public String getWinner() {
         return this.winner;
