@@ -1,5 +1,6 @@
 package com.katas.bowlingTests;
 
+import com.katas.bowling.BowlingCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

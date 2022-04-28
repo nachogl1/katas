@@ -1,6 +1,6 @@
-package com.katas.bowlingTests;
+package com.katas.bowling;
 
-import static com.katas.bowlingTests.BowlingGameSymbol.*;
+import static com.katas.bowling.BowlingGameSymbol.*;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
 
@@ -32,6 +32,8 @@ public class BowlingCalculator {
 
         return score;
     }
+
+
 
     private boolean isStrike(String roll) {
         return roll.equals(STRIKE.getSymbol());

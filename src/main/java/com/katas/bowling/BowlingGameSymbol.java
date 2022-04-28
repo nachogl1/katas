@@ -1,4 +1,4 @@
-package com.katas.bowlingTests;
+package com.katas.bowling;
 
 public enum BowlingGameSymbol {
     FRAME("|"),
