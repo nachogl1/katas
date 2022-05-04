@@ -10,7 +10,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @TestMethodOrder(OrderAnnotation.class)
-public class RomanNumbersTranslatorV1Should {
+public class RomanNumbersTranslatorV1Test {
 
     RomanNumberParserV1 romanNumberParser;
 

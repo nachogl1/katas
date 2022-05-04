@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
- class StatsCalculatorV1Should {
+ class StatsCalculatorV1Test {
 
 	private StatsCalculatorV1 statsCalculator;
 

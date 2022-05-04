@@ -12,7 +12,7 @@ import com.katas.FibonacciGenerator.FibonacciGeneratorV1;
 import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
- class FibonacciGeneratorV1Should {
+ class FibonacciGeneratorV1Test {
 
 	private FibonacciGeneratorV1 fiboGenerator;
 

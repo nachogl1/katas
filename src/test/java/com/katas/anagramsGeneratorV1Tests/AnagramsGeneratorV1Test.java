@@ -1,18 +1,15 @@
-package com.katas.anagramsGeneratorTests;
+package com.katas.anagramsGeneratorV1Tests;
 
-import com.katas.AnagramsGenerator.AnagramsGeneratorV1;
+import com.katas.AnagramsGeneratorV1.AnagramsGeneratorV1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-class AnagramsGeneratorV1Should {
+class AnagramsGeneratorV1Test {
 
     private AnagramsGeneratorV1 anagramsGenerator;
 

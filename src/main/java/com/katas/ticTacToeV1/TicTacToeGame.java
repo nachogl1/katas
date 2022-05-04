@@ -1,4 +1,4 @@
-package com.katas.ticTacToeGame;
+package com.katas.ticTacToeV1;
 
 import java.util.HashMap;
 import java.util.Map;

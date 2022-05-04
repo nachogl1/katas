@@ -1,12 +1,11 @@
-package com.katas.fibonacciGeneratorTests;
+package com.katas.fibonacciRecursive;
 
-import com.katas.FibonacciGenerator.RecursiveFibonacciGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RecursiveFibonacciGeneratorShould {
+public class RecursiveFibonacciGeneratorTest {
 
     RecursiveFibonacciGenerator recursiveFibonacciGenerator;
 

@@ -1,4 +1,4 @@
-package com.katas.AnagramsGenerator;
+package com.katas.AnagramsGeneratorV1;
 
 import java.util.ArrayList;
 import java.util.List;

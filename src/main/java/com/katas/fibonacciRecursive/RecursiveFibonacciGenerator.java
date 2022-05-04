@@ -1,4 +1,4 @@
-package com.katas.FibonacciGenerator;
+package com.katas.fibonacciRecursive;
 
 public class RecursiveFibonacciGenerator {
 

@@ -1,115 +1,107 @@
 package com.katas.stringCalculatorTests;
 
+import com.katas.stringCalculator.NotNegativeNumbersAllowedException;
 import com.katas.stringCalculator.StringCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
 
-    private StringCalculator stringCalculator;
+    private StringCalculator calculator;
 
     @BeforeEach
     void setUp() {
-        stringCalculator = new StringCalculator();
-
+        calculator = new StringCalculator();
     }
 
     @Test
-    void return_0_if_empty_strring_passed() {
-        String rawData = "";
-        stringCalculator.initCalculator(rawData);
-        int result = stringCalculator.add();
+    void return0IfNoNumberPassed() {
+        int result = calculator.sum("");
         assertThat(result).isEqualTo(0);
     }
 
     @Test
-    void return_sum_of_two_numbers() {
-        String rawData = "1,1";
-        stringCalculator.initCalculator(rawData);
-        int result = stringCalculator.add();
-        assertThat(result).isEqualTo(2);
-    }
-
-    @Test
-    void return_argument_if_only_one_argument() {
-        String rawData = "1";
-        stringCalculator.initCalculator(rawData);
-        int result = stringCalculator.add();
+    void returnNumebrIfOneNumberPassed() {
+        int result = calculator.sum("1");
         assertThat(result).isEqualTo(1);
     }
 
     @Test
-    void return_sum_of_variable_range_of_numbers() {
-        String rawData = "1,2,3,4,5,6";
-        stringCalculator.initCalculator(rawData);
-
-        int result = stringCalculator.add();
-        assertThat(result).isEqualTo(21);
-    }
-
-    @Test
-    void return_sum_of_variable_range_of_numbers_with_different_separators() {
-        String rawData = "1,2\n3,4,5\n6";
-        stringCalculator.initCalculator(rawData);
-
-        int result = stringCalculator.add();
-        assertThat(result).isEqualTo(21);
-    }
-
-    @Test
-    void return_sum_of_variable_range_of_numbers_with_non_alphanumeric_custom_separator() {
-        String rawData = "//...\n1...2";
-        stringCalculator.initCalculator(rawData);
-
-        int result = stringCalculator.add();
+    void returnSumOfTwoNumbers() {
+        int result = calculator.sum("1,2");
         assertThat(result).isEqualTo(3);
     }
 
     @Test
-    void return_sum_of_variable_range_of_numbers_with_alphanumeric_custom_separator() {
-        String rawData = "//mmm\n1mmm2";
-        stringCalculator.initCalculator(rawData);
-
-        int result = stringCalculator.add();
-        assertThat(result).isEqualTo(3);
+    void returnSumOfMultipleNumbers() {
+        int result = calculator.sum("1,1,1,1,1,1");
+        assertThat(result).isEqualTo(6);
     }
 
     @Test
-    void return_exception_when_negative_number_detected() {
-        String rawData = "1,-2,-3";
+    void returnSumOfNumberWithCommaAndNewlineAsSeparators() {
+        int result = calculator.sum("1,1,1\n1,1\n1");
+        assertThat(result).isEqualTo(6);
+    }
 
-        assertThatIllegalArgumentException().isThrownBy(() -> {
-            stringCalculator.initCalculator(rawData);
+    @Test
+    void returnSumOfNumberWithNonAlphanumericCustomSeparatorAsSeparators() {
+        int result = calculator.sum("//@\n10,1@1\n1,1\n1");
+        assertThat(result).isEqualTo(15);
+    }
+
+    @Test
+    void returnSumOfNumberWithNonAlphanumericCustomSeparator2AsSeparators() {
+        int result = calculator.sum("//\"\n1,1,1\n1\"1\n1");
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    void returnSumOfNumberWithAlphanumericCustomSeparatorAsSeparators() {
+        int result = calculator.sum("//miau\n1,1miau1\n1,1\n1");
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    void returnCorectSumByRemovingNumbersBiggerThan1000() {
+        int result = calculator.sum("//miau\n1001,1miau1\n1,1\n1");
+        assertThat(result).isEqualTo(5);
+    }
+
+    @Test
+    void returnSumOfNumberWithLongNonAlphanumericCustomSeparator2AsSeparators() {
+        int result = calculator.sum("//[\'\']\n1001,1,1\n1,1\'\'1");
+        assertThat(result).isEqualTo(5);
+    }
+
+    @Test
+    void returnSumOfNumberWithLongAlphanumericCustomSeparator2AsSeparators() {
+        int result = calculator.sum("//[miaumiau]\n1001,1miaumiau1\n1,1miaumiau1");
+        assertThat(result).isEqualTo(5);
+    }
+
+    @Test
+    void returnSumOfNumberWithSingleNonAlphanumericAndSingleAlphanumericCustomSeparator2AsSeparators() {
+        int result = calculator.sum("//[\'][miau]\n1001,1,1\'1,1miau1");
+        assertThat(result).isEqualTo(5);
+    }
+
+    @Test
+    void returnSumOfNumberWithMultipleNonAlphanumericAndMultipleAlphanumericCustomSeparator2AsSeparators() {
+        int result = calculator.sum("//[\'\'][miaumiau]\n1001,1,1\'\'1,1miaumiau1");
+        assertThat(result).isEqualTo(5);
+    }
+
+    @Test
+    void returnNonNegativeNumbersExceptionIfNegativeNumberDetected() {
+        assertThrows(NotNegativeNumbersAllowedException.class, () ->
+        {
+            int result = calculator.sum("//miau\n1,1miau-1\n1,1\n1");
         });
     }
 
-    @Test
-    void ignore_numbers_bigger_than_1000() {
-        String rawData = "//miau\n1001miau20";
-        stringCalculator.initCalculator(rawData);
 
-        int result = stringCalculator.add();
-        assertThat(result).isEqualTo(20);
-    }
-
-    @Test
-    void return_sum_of_variable_range_of_numbers_with_non_alphanumeric_custom_multiple_separator() {
-        String rawData = "//[...]\n1...3";
-        stringCalculator.initCalculator(rawData);
-
-        int result = stringCalculator.add();
-        assertThat(result).isEqualTo(4);
-    }
-
-    @Test
-    void return_sum_of_variable_range_of_numbers_with_alphanumeric_custom_multiple_separator() {
-        String rawData = "//[mmm]\n1mmm3";
-        stringCalculator.initCalculator(rawData);
-
-        int result = stringCalculator.add();
-        assertThat(result).isEqualTo(4);
-    }
 }

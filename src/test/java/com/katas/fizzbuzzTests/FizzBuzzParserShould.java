@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
-class FizzBuzzParserV1Should {
+class FizzBuzzParserV1Test {
 
     private FizzbuzzParserV1 fizzbuzzParser;
 
