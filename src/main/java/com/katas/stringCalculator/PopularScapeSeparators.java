@@ -3,7 +3,7 @@ package com.katas.stringCalculator;
 public enum PopularScapeSeparators {
     NEWLINE("\\n"),
     TAB("\\t"),
-    BACKSPACE("\\b"),
+//    BACKSPACE("\\b"), this ws playing with me
     CARRIAGE_RETURN("\\r"),
     FORM_FEED("\\f"),
     SINGLE_QUOTE("\\\'"),

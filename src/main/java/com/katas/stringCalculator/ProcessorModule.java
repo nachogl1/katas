@@ -12,6 +12,7 @@ public class ProcessorModule {
 
     public int[] processData(String rawData) {
         String[] numbersAsText = this.separatorProcessorModule.separateElements(rawData);
+
         int[] numbersToSum = this.numericProcessorModule.transformToValidArrayOfNumbers(numbersAsText);
 
         return numbersToSum;

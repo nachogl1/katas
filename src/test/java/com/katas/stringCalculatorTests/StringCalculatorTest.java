@@ -85,8 +85,8 @@ public class StringCalculatorTest {
 
     @Test
     void returnSumOfNumberWithSingleNonAlphanumericAndSingleAlphanumericCustomSeparator2AsSeparators() {
-        int result = calculator.sum("//[\'][miau]\n1001,1,1\'1,1miau1");
-        assertThat(result).isEqualTo(5);
+        int result = calculator.sum("//[\'][miau]\n1001,1,1\'1,1miau1,1");
+        assertThat(result).isEqualTo(6);
     }
 
     @Test
@@ -99,9 +99,8 @@ public class StringCalculatorTest {
     void returnNonNegativeNumbersExceptionIfNegativeNumberDetected() {
         assertThrows(NotNegativeNumbersAllowedException.class, () ->
         {
-            int result = calculator.sum("//miau\n1,1miau-1\n1,1\n1");
+            int result = calculator.sum("//miau\n1,10miau-1\n1,1\n1");
         });
     }
-
 
 }

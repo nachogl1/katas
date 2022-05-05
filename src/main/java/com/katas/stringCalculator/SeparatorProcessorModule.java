@@ -1,5 +1,10 @@
 package com.katas.stringCalculator;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static com.katas.stringCalculator.PopularScapeSeparators.NEWLINE;
 import static com.katas.stringCalculator.PopularScapeSeparators.values;
 
@@ -20,8 +25,12 @@ public class SeparatorProcessorModule {
         return rawDataSplit;
     }
 
-    private void removeCustomSeparatorInfraestructure(int lenghtOfCustomSeparator) {
-        this.rawData = this.rawData.substring(2 + lenghtOfCustomSeparator);
+    private void removeCustomSeparatorInfraestructure() {
+        this.rawData = removeCustomSeparatorsDataFromRawData();
+    }
+
+    private String removeCustomSeparatorsDataFromRawData() {
+        return this.rawData.split("\\n", 2)[1];
     }
 
     private String getRegexForSeparators() {
@@ -38,21 +47,43 @@ public class SeparatorProcessorModule {
     }
 
     private void processNewCustomSeparators(StringBuilder resultRegex) {
-        //check if it is about  many long
-        String customSeparator = addCustomSeparatorsByProcessingRawDataTo(resultRegex);
-        this.removeCustomSeparatorInfraestructure(customSeparator.length());
+        String[] customSeparators = returnNewCustomSeparatorsByProcessingRawData(resultRegex);
+
+        addNewSeparators(resultRegex, customSeparators);
+
+        this.removeCustomSeparatorInfraestructure();
+    }
+
+    private void addNewSeparators(StringBuilder resultRegex, String[] customSeparators) {
+        for (String separator : customSeparators) {
+            resultRegex.append("(" + separator + ")|");
+        }
     }
 
     private void addDefaultNonScapeSeparatorTo(StringBuilder resultRegex) {
         resultRegex.append("(" + this.POPULAR_NON_SCAPED_CHARACTER + ")|");
     }
 
-    private String addCustomSeparatorsByProcessingRawDataTo(StringBuilder resultRegex) {
+    private String[] returnNewCustomSeparatorsByProcessingRawData(StringBuilder resultRegex) {
         String[] customSeparatorRawInfoAndNumbersRawInfo = splitRawDataIntoCustomSeparatorInfoAndNumberInfo();
         String newCustomSeparatorRawInformation = customSeparatorRawInfoAndNumbersRawInfo[0];
-        String newCustomSeparatorRefined = newCustomSeparatorRawInformation.substring(2);
-        resultRegex.append("(" + newCustomSeparatorRefined + ")|");
-        return newCustomSeparatorRefined;
+        String newCustomSeparatorsRefined = newCustomSeparatorRawInformation.substring(2);
+
+        if (newCustomSeparatorsRefined.startsWith("[")) {
+
+            List<String> result = new ArrayList<>();
+            Matcher m = Pattern.compile("\\[(.*?)\\]").matcher(newCustomSeparatorsRefined);
+
+            while (m.find()) {//Finds Matching Pattern in String
+                result.add(m.group(1));
+            }
+
+            String[] r2 = result.toArray(new String[0]);
+
+            return r2;
+        }
+
+        return new String[]{newCustomSeparatorsRefined};
     }
 
     private String[] splitRawDataIntoCustomSeparatorInfoAndNumberInfo() {
