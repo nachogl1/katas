@@ -5,32 +5,27 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.katas.stringCalculator.PopularScapeSeparators.NEWLINE;
-import static com.katas.stringCalculator.PopularScapeSeparators.values;
+import static com.katas.stringCalculator.PopularScapedSeparators.values;
 
 public class SeparatorProcessorModule {
 
-    private static final String CUSTOM_SEPARATOR_SIGNAL = "//";
-    private static final String POPULAR_NON_SCAPED_CHARACTER = ",";
+    public static final String NEXUS_BETWEEN_SEPARATORS_AND_NUMERIC_DATA = "\\n";
+    private final String CUSTOM_SEPARATOR_SIGNAL = "//";
 
     private String rawData = "";
 
-    public String[] separateElements(String rawDataInput) {
+    public void initModule(String rawDataInput) {
         this.rawData = rawDataInput;
+    }
+
+    public String[] processSeparators() {
+
+        if (this.rawData == null) throw new ModuleNotInitiatedException();
 
         String regex = this.getRegexForSeparators();
 
-        String[] rawDataSplit = this.rawData.split(regex);
+        return this.rawData.split(regex);
 
-        return rawDataSplit;
-    }
-
-    private void removeCustomSeparatorInfraestructure() {
-        this.rawData = removeCustomSeparatorsDataFromRawData();
-    }
-
-    private String removeCustomSeparatorsDataFromRawData() {
-        return this.rawData.split("\\n", 2)[1];
     }
 
     private String getRegexForSeparators() {
@@ -38,66 +33,80 @@ public class SeparatorProcessorModule {
 
         //temporal coupling
         if (this.rawData.startsWith(CUSTOM_SEPARATOR_SIGNAL)) {
-            processNewCustomSeparators(resultRegex);
+            appendNewCustomSeparatorsTo(resultRegex);
         }
-        addDefaultNonScapeSeparatorTo(resultRegex);
-        addPopularSeparatorsTo(resultRegex);
+        appendPopularSeparatorsTo(resultRegex);
 
         return resultRegex.toString();
     }
 
-    private void processNewCustomSeparators(StringBuilder resultRegex) {
+    private void appendNewCustomSeparatorsTo(StringBuilder resultRegex) {
         String[] customSeparators = returnNewCustomSeparatorsByProcessingRawData(resultRegex);
 
-        addNewSeparators(resultRegex, customSeparators);
+        appendNewCustomSeparatorsTo(resultRegex, customSeparators);
 
-        this.removeCustomSeparatorInfraestructure();
-    }
-
-    private void addNewSeparators(StringBuilder resultRegex, String[] customSeparators) {
-        for (String separator : customSeparators) {
-            resultRegex.append("(" + separator + ")|");
-        }
-    }
-
-    private void addDefaultNonScapeSeparatorTo(StringBuilder resultRegex) {
-        resultRegex.append("(" + this.POPULAR_NON_SCAPED_CHARACTER + ")|");
+        this.rawData = removeCustomSeparatorsDataFromRawData();
     }
 
     private String[] returnNewCustomSeparatorsByProcessingRawData(StringBuilder resultRegex) {
         String[] customSeparatorRawInfoAndNumbersRawInfo = splitRawDataIntoCustomSeparatorInfoAndNumberInfo();
         String newCustomSeparatorRawInformation = customSeparatorRawInfoAndNumbersRawInfo[0];
-        String newCustomSeparatorsRefined = newCustomSeparatorRawInformation.substring(2);
+        String newCustomSeparatorsRefined = removeCustomSeparatorStartingPattern(newCustomSeparatorRawInformation);
 
-        if (newCustomSeparatorsRefined.startsWith("[")) {
-
-            List<String> result = new ArrayList<>();
-            Matcher m = Pattern.compile("\\[(.*?)\\]").matcher(newCustomSeparatorsRefined);
-
-            while (m.find()) {//Finds Matching Pattern in String
-                result.add(m.group(1));
-            }
-
-            String[] r2 = result.toArray(new String[0]);
-
-            return r2;
+        if (isComplexCustomSeparatorDetected(newCustomSeparatorsRefined)) {
+            return processComplexCustomSeparators(newCustomSeparatorsRefined);
         }
 
         return new String[]{newCustomSeparatorsRefined};
     }
 
-    private String[] splitRawDataIntoCustomSeparatorInfoAndNumberInfo() {
-        return this.rawData.split(NEWLINE.getSymbol(), 2);
+    private String[] processComplexCustomSeparators(String newCustomSeparatorsRefined) {
+        List<String> matches = new ArrayList<>();
+        Matcher m = Pattern.compile("\\[(.*?)\\]").matcher(newCustomSeparatorsRefined);
+
+        while (m.find()) {
+            matches.add(m.group(1));
+        }
+
+        String[] result = matches.toArray(new String[0]);
+
+        return result;
     }
 
-    private void addPopularSeparatorsTo(StringBuilder resultRegex) {
-        for (PopularScapeSeparators separator : values())
-            resultRegex.append("(" + separator.getSymbol() + ")|");
+    private boolean isComplexCustomSeparatorDetected(String newCustomSeparatorsRefined) {
+        return newCustomSeparatorsRefined.startsWith("[");
+    }
+
+    private String removeCustomSeparatorStartingPattern(String newCustomSeparatorRawInformation) {
+        return newCustomSeparatorRawInformation.substring(2);
+    }
+
+    private void appendNewCustomSeparatorsTo(StringBuilder resultRegex, String[] customSeparators) {
+        for (String separator : customSeparators) {
+            resultRegex.append("(").append(separator).append(")|");
+        }
+    }
+
+    private String removeCustomSeparatorsDataFromRawData() {
+        return this.rawData.split(NEXUS_BETWEEN_SEPARATORS_AND_NUMERIC_DATA, 2)[1];
+    }
+
+    private String[] splitRawDataIntoCustomSeparatorInfoAndNumberInfo() {
+        return this.rawData.split(NEXUS_BETWEEN_SEPARATORS_AND_NUMERIC_DATA, 2);
+    }
+
+    private void appendPopularSeparatorsTo(StringBuilder resultRegex) {
+        for (PopularScapedSeparators separator : values())
+            resultRegex.append("(").append(separator.getSymbol()).append(")|");
 
         removeLastOROperatorFrom(resultRegex);
     }
 
     private void removeLastOROperatorFrom(StringBuilder resultRegex) {
         resultRegex.deleteCharAt(resultRegex.length() - 1);
+    }
+
+
+    private class ModuleNotInitiatedException extends RuntimeException {
     }
 }

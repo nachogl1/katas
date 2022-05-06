@@ -24,7 +24,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void returnNumebrIfOneNumberPassed() {
+    void returnNumberIfOnlyOneArgument() {
         int result = calculator.sum("1");
         assertThat(result).isEqualTo(1);
     }
@@ -37,7 +37,7 @@ public class StringCalculatorTest {
 
     @Test
     void returnSumOfMultipleNumbers() {
-        int result = calculator.sum("1,1,1,1,1,1");
+        int result = calculator.sum("1,,,1,1,1,1,1");
         assertThat(result).isEqualTo(6);
     }
 
@@ -48,50 +48,50 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void returnSumOfNumberWithNonAlphanumericCustomSeparatorAsSeparators() {
+    void returnSumOfNumberWithNonAlphanumericCustomSeparator() {
         int result = calculator.sum("//@\n10,1@1\n1,1\n1");
         assertThat(result).isEqualTo(15);
     }
 
     @Test
-    void returnSumOfNumberWithNonAlphanumericCustomSeparator2AsSeparators() {
+    void returnSumOfNumberWithAnotherNonAlphanumericCustomSeparator() {
         int result = calculator.sum("//\"\n1,1,1\n1\"1\n1");
         assertThat(result).isEqualTo(6);
     }
 
     @Test
-    void returnSumOfNumberWithAlphanumericCustomSeparatorAsSeparators() {
-        int result = calculator.sum("//miau\n1,1miau1\n1,1\n1");
+    void returnSumOfNumberWithAlphanumericCustomSeparator() {
+        int result = calculator.sum("//miau1\n1,1miau11\n1,1\n1");
         assertThat(result).isEqualTo(6);
     }
 
     @Test
-    void returnCorectSumByRemovingNumbersBiggerThan1000() {
+    void returnCorrectSumByRemovingNumbersBiggerThan1000() {
         int result = calculator.sum("//miau\n1001,1miau1\n1,1\n1");
         assertThat(result).isEqualTo(5);
     }
 
     @Test
-    void returnSumOfNumberWithLongNonAlphanumericCustomSeparator2AsSeparators() {
-        int result = calculator.sum("//[\'\']\n1001,1,1\n1,1\'\'1");
+    void returnSumOfNumberWithLongNonAlphanumericCustomSeparator() {
+        int result = calculator.sum("//[\'\'\'\'\'\']\n1001,1,1\n1,1\'\'\'\'\'\'1");
         assertThat(result).isEqualTo(5);
     }
 
     @Test
-    void returnSumOfNumberWithLongAlphanumericCustomSeparator2AsSeparators() {
-        int result = calculator.sum("//[miaumiau]\n1001,1miaumiau1\n1,1miaumiau1");
+    void returnSumOfNumberWithLongAlphanumericCustomSeparator() {
+        int result = calculator.sum("//[miaumiaumiaumiau]\n1001,1miaumiaumiaumiau1\n1,1miaumiaumiaumiau1");
         assertThat(result).isEqualTo(5);
     }
 
     @Test
-    void returnSumOfNumberWithSingleNonAlphanumericAndSingleAlphanumericCustomSeparator2AsSeparators() {
+    void returnSumOfNumberWithSingleNonAlphanumericAndSingleAlphanumericCustomSeparator() {
         int result = calculator.sum("//[\'][miau]\n1001,1,1\'1,1miau1,1");
         assertThat(result).isEqualTo(6);
     }
 
     @Test
-    void returnSumOfNumberWithMultipleNonAlphanumericAndMultipleAlphanumericCustomSeparator2AsSeparators() {
-        int result = calculator.sum("//[\'\'][miaumiau]\n1001,1,1\'\'1,1miaumiau1");
+    void returnSumOfNumberWithMultipleNonAlphanumericAndMultipleAlphanumericCustomSeparator() {
+        int result = calculator.sum("//[\'\'][miaumiaumiaumiau]\n1001,1,1\'\'\'\'1,1miaumiaumiaumiau1");
         assertThat(result).isEqualTo(5);
     }
 
@@ -99,7 +99,7 @@ public class StringCalculatorTest {
     void returnNonNegativeNumbersExceptionIfNegativeNumberDetected() {
         assertThrows(NotNegativeNumbersAllowedException.class, () ->
         {
-            int result = calculator.sum("//miau\n1,10miau-1\n1,1\n1");
+            int result = calculator.sum("//[\'\'][miaumiau]\n1001,1,1\'\'-11,1miaumiau1");
         });
     }
 

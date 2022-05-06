@@ -1,9 +1,8 @@
 package com.katas.stringCalculator;
 
 public class ProcessorModule {
-
-    private SeparatorProcessorModule separatorProcessorModule;
-    private NumericProcessorModule numericProcessorModule;
+    private final SeparatorProcessorModule separatorProcessorModule;
+    private final NumericProcessorModule numericProcessorModule;
 
     public ProcessorModule() {
         this.separatorProcessorModule = new SeparatorProcessorModule();
@@ -11,11 +10,23 @@ public class ProcessorModule {
     }
 
     public int[] processData(String rawData) {
-        String[] numbersAsText = this.separatorProcessorModule.separateElements(rawData);
 
-        int[] numbersToSum = this.numericProcessorModule.transformToValidArrayOfNumbers(numbersAsText);
+        String[] numbersAsText = processSeparators(rawData);
+
+        int[] numbersToSum = processNumbers(numbersAsText);
 
         return numbersToSum;
+    }
+
+    private int[] processNumbers(String[] numbersAsText) {
+        int[] numbersToSum = this.numericProcessorModule.transformToValidArrayOfNumbers(numbersAsText);
+        return numbersToSum;
+    }
+
+    private String[] processSeparators(String rawData) {
+        this.separatorProcessorModule.initModule(rawData);
+        String[] numbersAsText = this.separatorProcessorModule.processSeparators();
+        return numbersAsText;
     }
 
 }
