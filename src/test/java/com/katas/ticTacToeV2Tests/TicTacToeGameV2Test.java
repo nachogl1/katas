@@ -22,6 +22,7 @@ public class TicTacToeGameV2Test {
         ticTacToeGameV2 = new TicTacToeGameV2();
     }
 
+
     @Test
     void publishNotStartedIfNoMoves() {
         TicTacToeV2Status status = ticTacToeGameV2.publishCurrentResult();

@@ -4,9 +4,8 @@ import static com.katas.ticTacToeV2.TicTacToeV2Symbology.EMPTY;
 
 public class TicTacToeV2Referee {
 
-    //    private TicTacToeV2Symbology lastTurnWas;
     private TicTacToeV2Status currentGameStatus = TicTacToeV2Status.NOT_STARTED;
-    private TicTacToeRuleTable ruleTable = new TicTacToeRuleTable();
+    private final TicTacToeRuleTable ruleTable = new TicTacToeRuleTable();
     private TicTacToeV2Symbology currentPlayer = TicTacToeV2Symbology.PLAYER_ONE;
 
 
