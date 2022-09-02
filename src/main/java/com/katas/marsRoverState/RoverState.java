@@ -6,8 +6,10 @@ public interface RoverState {
 
     RoverState turnLeft();
 
-    Coordinate getCurrentCoordinate();
+    int processMoveXAxis(int x);
 
-    void move();
+    int processMoveYAxis(int y);
 
+    String returnFormattedStateSymbol();
 }
+

@@ -3,7 +3,7 @@
 I chose to have all my katas in the same repo using Trunk-Based development. They are independent exercises, and I find
 it easier
 to update this way. On top of that, I have one source of truth to go when I have doubts, or I have new ideas.
-The weapon of choice is Java
+The weapon of choice is Java. 
 
 ## Key takeaways
 

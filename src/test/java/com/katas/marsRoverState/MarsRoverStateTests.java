@@ -16,26 +16,26 @@ public class MarsRoverStateTests {
 
     @Test
     void whenCreatingMarsRover_RoverFacesNorth() {
-        RoverState currentDirection = rover.getRoverState();
+        String finalState = rover.getCurrentState();
 
-        assertEquals(RoverStateNorth.class, currentDirection.getClass());
+        assertEquals("N:0:0", finalState);
     }
 
     @Test
     void whenRoverStartsNorth_WhenRoverTurnRight_RoverFacesEast() {
         rover.turnRight();
-        RoverState currentDirection = rover.getRoverState();
+        String finalState = rover.getCurrentState();
 
-        assertEquals(RoverStateEast.class, currentDirection.getClass());
+        assertEquals("E:0:0", finalState);
     }
 
     @Test
     void whenRoverStartsNorth_WhenRoverTurnTwoTimesRight_RoverFacesSouth() {
         rover.turnRight();
         rover.turnRight();
-        RoverState currentDirection = rover.getRoverState();
+        String finalState = rover.getCurrentState();
 
-        assertEquals(RoverStateSouth.class, currentDirection.getClass());
+        assertEquals("S:0:0", finalState);
     }
 
     @Test
@@ -44,29 +44,20 @@ public class MarsRoverStateTests {
         rover.turnRight();
         rover.turnRight();
         rover.turnRight();
-        RoverState currentDirection = rover.getRoverState();
+        String finalState = rover.getCurrentState();
 
-        assertEquals(RoverStateWest.class, currentDirection.getClass());
+        assertEquals("W:0:0", finalState);
     }
 
-    @Test
-    void whenCreatingMarsRover_RoverStartsAt0_0() {
-
-        Coordinate currentCoordinate = rover.getCurrentCoordinate();
-
-        assertEquals(0, currentCoordinate.x);
-        assertEquals(0, currentCoordinate.y);
-    }
 
     @Test
     void givenRoverStarts0_0_WhenRoverMovesOneStepNorth_RoverIsIn0_1() {
 
         rover.move();
 
-        Coordinate currentCoordinate = rover.getCurrentCoordinate();
+        String finalState = rover.getCurrentState();
 
-        assertEquals(0, currentCoordinate.x);
-        assertEquals(1, currentCoordinate.y);
+        assertEquals("N:0:1", finalState);
     }
 
     @Test
@@ -75,10 +66,9 @@ public class MarsRoverStateTests {
         rover.move();
         rover.move();
 
-        Coordinate currentCoordinate = rover.getCurrentCoordinate();
+        String finalState = rover.getCurrentState();
 
-        assertEquals(0, currentCoordinate.x);
-        assertEquals(2, currentCoordinate.y);
+        assertEquals("N:0:2", finalState);
     }
 
     @Test
@@ -88,10 +78,9 @@ public class MarsRoverStateTests {
         rover.move();
         rover.move();
 
-        Coordinate currentCoordinate = rover.getCurrentCoordinate();
+        String finalState = rover.getCurrentState();
 
-        assertEquals(0, currentCoordinate.x);
-        assertEquals(3, currentCoordinate.y);
+        assertEquals("N:0:3", finalState);
     }
 
     @Test
@@ -100,10 +89,9 @@ public class MarsRoverStateTests {
         rover.turnRight();
         rover.move();
 
-        Coordinate currentCoordinate = rover.getCurrentCoordinate();
+        String finalState = rover.getCurrentState();
 
-        assertEquals(1, currentCoordinate.x);
-        assertEquals(0, currentCoordinate.y);
+        assertEquals("E:1:0", finalState);
     }
 
     @Test
@@ -116,12 +104,9 @@ public class MarsRoverStateTests {
         rover.turnLeft();
         rover.move();
 
-        Coordinate currentCoordinate = rover.getCurrentCoordinate();
-        RoverState currentState = rover.getRoverState();
+        String finalState = rover.getCurrentState();
 
-        assertEquals(3, currentCoordinate.x);
-        assertEquals(1, currentCoordinate.y);
-        assertEquals(RoverStateNorth.class, currentState.getClass());
+        assertEquals("N:3:1", finalState);
 
     }
 

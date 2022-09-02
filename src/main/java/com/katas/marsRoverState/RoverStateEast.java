@@ -2,34 +2,30 @@ package com.katas.marsRoverState;
 
 public class RoverStateEast implements RoverState {
 
-    private Coordinate _coordinate;
-
-
-    public RoverStateEast(Coordinate coordinate) {
-        _coordinate = coordinate;
-    }
-
     @Override
     public RoverState turnRight() {
-        return new RoverStateSouth(_coordinate);
+        return new RoverStateSouth();
     }
 
     @Override
     public RoverState turnLeft() {
-        return new RoverStateNorth(_coordinate);
+        return new RoverStateNorth();
     }
 
     @Override
-    public Coordinate getCurrentCoordinate() {
-        return _coordinate;
+    public int processMoveXAxis(int x) {
+        return ++x;
     }
 
     @Override
-    public void move() {
-        int currentX = _coordinate.x;
-        int currentY = _coordinate.y;
+    public int processMoveYAxis(int y) {
+        return y;
+    }
 
-        this._coordinate = new Coordinate(currentX + 1, currentY);
+
+    @Override
+    public String returnFormattedStateSymbol() {
+        return "E:";
     }
 
 
