@@ -15,5 +15,6 @@ The weapon of choice is Java.
 
 ## Log
 
-- Mars Rovers with State Pattern ( I am happy with this now)
 - Rest of the katas are from the 'pre-Academy' era, so load of things need change even though the tests pass 
+- Mars Rovers with State Pattern ( I am happy with this now)
+- First Iteration Bank Kata Done
