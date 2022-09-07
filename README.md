@@ -11,6 +11,7 @@ The weapon of choice is Java.
   subsections
   for quicker feedback loop
 - I find **Starting Step Tests** interesting
+- Commit more often to encourage good habits
 
 ## Log
 
