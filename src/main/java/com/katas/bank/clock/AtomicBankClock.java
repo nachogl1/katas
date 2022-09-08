@@ -12,7 +12,7 @@ public class AtomicBankClock implements BankClock {
     @Override
     public String getCurrentDateAsString() {
         LocalDate date = getCurrentLocalDate();
-        DateTimeFormatter formatter = getLocalDateFormatter();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY", Locale.ENGLISH);
         return formatter.format(date);
     }
 
@@ -20,8 +20,5 @@ public class AtomicBankClock implements BankClock {
         return LocalDate.now();
     }
 
-    private DateTimeFormatter getLocalDateFormatter() {
-        return DateTimeFormatter.ofPattern("dd/MM/YYYY", Locale.ENGLISH);
-    }
 
 }

@@ -2,7 +2,7 @@ package com.katas.bank;
 
 import com.katas.bank.account.BankAccount;
 import com.katas.bank.clock.BankClock;
-import com.katas.bank.feedbackForUser.BankStatementFeed;
+import com.katas.bank.feedbackForUser.BankStatementPrinter;
 import com.katas.bank.transaction.DepositTransaction;
 import com.katas.bank.transaction.WithdrawTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ATMPersonalAccountService implements AccountService {
 
-    BankStatementFeed console;
-    BankClock clock;
-    BankAccount account;
+    private BankStatementPrinter console;
+    private BankClock clock;
+    private BankAccount account;
 
     @Autowired
-    public ATMPersonalAccountService(BankStatementFeed console, BankClock clock, BankAccount account) {
+    public ATMPersonalAccountService(BankStatementPrinter console, BankClock clock, BankAccount account) {
         this.account = account;
         this.console = console;
         this.clock = clock;

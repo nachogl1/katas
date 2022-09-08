@@ -5,7 +5,7 @@ import com.katas.bank.account.BankAccount;
 import com.katas.bank.account.PersonalBankAccount;
 import com.katas.bank.clock.BankClock;
 import com.katas.bank.feedbackForUser.ATMConsole;
-import com.katas.bank.feedbackForUser.BankStatementFeed;
+import com.katas.bank.feedbackForUser.BankStatementPrinter;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
@@ -14,7 +14,7 @@ public class BankAcceptanceTest {
 
     @Test
     void givenAPredesignedUserActions_WhenUsingAPersonalAccountOnATMMachine_ThenSystemPrintsTheCorrectBankStatementCalculations() {
-        BankStatementFeed consoleMock = mock(ATMConsole.class);
+        BankStatementPrinter consoleMock = mock(ATMConsole.class);
         BankClock clockMock = mock(BankClock.class);
         BankAccount accountSpy = spy(new PersonalBankAccount());
         AccountService accountServiceMock = new ATMPersonalAccountService(consoleMock, clockMock, accountSpy);

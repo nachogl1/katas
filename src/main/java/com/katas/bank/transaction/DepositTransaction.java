@@ -24,12 +24,12 @@ public class DepositTransaction implements BankTransaction {
     }
 
     @Override
-    public void updateCurrentInternalTotalBalance(int currentTotal) {
+    public void updateCurrentLocalTotalBalance(int currentTotal) {
         this.temporalProcessedTotalBalance = currentTotal + amount;
     }
 
     @Override
-    public int getCurrentInternalTotalBalance() {
+    public int getCurrentLocalTotalBalance() {
         return this.temporalProcessedTotalBalance;
     }
 

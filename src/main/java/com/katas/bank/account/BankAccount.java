@@ -6,35 +6,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class BankAccount {
+public abstract class BankAccount {
 
-    public static final String TABLE_HEADER = "Date       || Amount || Balance\n";
-    List<BankTransaction> transactionList = new ArrayList<>();
-    Stack<String> transactionResultStack = new Stack();
+    private final String TABLE_HEADER = "Date       || Amount || Balance\n";
+    private List<BankTransaction> transactions = new ArrayList<>();
+    private Stack<String> transactionsAsString = new Stack();
 
     public void addTransaction(BankTransaction newTransaction) {
-        this.transactionList.add(newTransaction);
+        this.transactions.add(newTransaction);
     }
 
     public String returnTransactionStackAsString() {
-        populateTransactionResultStack();
+        populateTransactionAsStringStack();
 
         StringBuilder statementBuilder = new StringBuilder(TABLE_HEADER);
-        while (!this.transactionResultStack.isEmpty()) {
-            statementBuilder.append(this.transactionResultStack.pop());
+        while (!this.transactionsAsString.isEmpty()) {
+            statementBuilder.append(this.transactionsAsString.pop());
         }
 
         return statementBuilder.toString();
     }
 
-    private void populateTransactionResultStack() {
+    private void populateTransactionAsStringStack() {
         int currentTotalBalance = 0;
 
-        for (BankTransaction bankTransaction : this.transactionList) {
-            bankTransaction.updateCurrentInternalTotalBalance(currentTotalBalance);
-            currentTotalBalance = bankTransaction.getCurrentInternalTotalBalance();
+        for (BankTransaction bankTransaction : this.transactions) {
+            bankTransaction.updateCurrentLocalTotalBalance(currentTotalBalance);
+            currentTotalBalance = bankTransaction.getCurrentLocalTotalBalance();
 
-            this.transactionResultStack.push(bankTransaction.toString());
+            this.transactionsAsString.push(bankTransaction.toString());
 
         }
 

@@ -27,12 +27,12 @@ public class WithdrawTransaction implements BankTransaction {
     }
 
     @Override
-    public void updateCurrentInternalTotalBalance(int currentTotal) {
+    public void updateCurrentLocalTotalBalance(int currentTotal) {
         this.temporalProcessedTotalBalance = currentTotal + negativeAmount;
     }
 
     @Override
-    public int getCurrentInternalTotalBalance() {
+    public int getCurrentLocalTotalBalance() {
         return this.temporalProcessedTotalBalance;
     }
 }

@@ -2,8 +2,8 @@ package com.katas.bank.transaction;
 
 public interface BankTransaction {
 
-    void updateCurrentInternalTotalBalance(int currentTotal);
+    void updateCurrentLocalTotalBalance(int currentTotal);
 
-    int getCurrentInternalTotalBalance();
+    int getCurrentLocalTotalBalance();
 
 }
