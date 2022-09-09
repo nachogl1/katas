@@ -1,7 +1,9 @@
 package com.katas.newBank;
 
-public class Deposit {
-    public Deposit(int amount) {
-        throw new UnsupportedOperationException();
+public class Deposit extends NewTransaction {
+
+    public Deposit(int amount, String date) {
+        super(amount, date);
     }
+
 }
