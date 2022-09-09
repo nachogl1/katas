@@ -1,38 +1,12 @@
 package com.katas.bank.transaction;
 
-public class WithdrawTransaction implements BankTransaction {
-
-    private int negativeAmount;
-    private String date;
-    private int temporalProcessedTotalBalance;
-
+public class WithdrawTransaction extends BankTransaction {
 
     public WithdrawTransaction(int amount, String date) {
-        this.negativeAmount = -amount;
-        this.date = date;
+        super(transformIntoNegativeAmount(amount), date);
     }
 
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder()
-                .append(date)
-                .append(" || ")
-                .append(negativeAmount)
-                .append("   || ")
-                .append(temporalProcessedTotalBalance)
-                .append("\n");
-
-        return sb.toString();
-    }
-
-    @Override
-    public void updateCurrentLocalTotalBalance(int currentTotal) {
-        this.temporalProcessedTotalBalance = currentTotal + negativeAmount;
-    }
-
-    @Override
-    public int getCurrentLocalTotalBalance() {
-        return this.temporalProcessedTotalBalance;
+    private static int transformIntoNegativeAmount(int amount) {
+        return -amount;
     }
 }
