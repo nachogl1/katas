@@ -18,6 +18,7 @@ there are no stupid comments or questions just people who may or may not underst
 The key is to remember, that when pairing, we are not attacking each other but putting solutions on the table.'
 - Not a fan of Hungarian Notation but I find using 'I' before the name of my interfaces useful. Only for this case, as it allows me 
 to quickly identify if I am in front of an abstraction or its implementation.
+- About Hungarian Notation, I believe there is room for it when needed:  https://www.joelonsoftware.com/2005/05/11/making-wrong-code-look-wrong/
 
 ## Log
 
