@@ -14,8 +14,10 @@ The weapon of choice is Java.
 - Commit more often to encourage good habits
 - Even when assumed, I think it is good to remember the following when pair programming: 'It is not a personal
 activity and all we put on the table are opinions of two different people to solve a problem. At the end of they day,
-there are not stupid comments or questions just people who may or may not understand all the caveats of the problem. 
+there are no stupid comments or questions just people who may or may not understand all the caveats of the problem. 
 The key is to remember, that when pairing, we are not attacking each other but putting solutions on the table.'
+- Not a fan of Hungarian Notation but I find using 'I' before the name of my interfaces useful. Only for this case, as it allows me 
+to quickly identify if I am in front of an abstraction or its implementation.
 
 ## Log
 
