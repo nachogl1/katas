@@ -27,3 +27,4 @@ to quickly identify if I am in front of an abstraction or its implementation.
 - First Iteration Bank Kata Done
 - NewBank is the name of the Bank Kata I did with Istvan as a collaborator. We had really nice discussions and learned 
 a lot from each other. Thanks mate!
+- I added Cucumber to play with it in the Bank Kata, it was fun to be honest
