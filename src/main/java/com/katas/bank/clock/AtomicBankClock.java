@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 @Component
-public class AtomicBankClock implements BankClock {
+public class AtomicBankClock implements IBankClock {
 
     @Override
     public String getCurrentDateAsString() {

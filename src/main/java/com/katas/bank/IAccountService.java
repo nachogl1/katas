@@ -1,6 +1,6 @@
 package com.katas.bank;
 
-public interface AccountService {
+public interface IAccountService {
     void deposit(int amount);
     void withdraw(int amount);
     void printStatement();

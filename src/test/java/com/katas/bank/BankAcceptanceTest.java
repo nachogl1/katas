@@ -3,8 +3,8 @@ package com.katas.bank;
 
 import com.katas.bank.account.BankAccount;
 import com.katas.bank.account.PersonalBankAccount;
-import com.katas.bank.clock.BankClock;
-import com.katas.bank.feedbackForUser.BankStatementPrinter;
+import com.katas.bank.clock.IBankClock;
+import com.katas.bank.feedbackForUser.IBankStatementPrinter;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
@@ -13,10 +13,10 @@ public class BankAcceptanceTest {
 
     @Test
     void givenAPredesignedUserActions_WhenUsingAPersonalAccountOnATMMachine_ThenSystemPrintsTheCorrectBankStatementCalculations() {
-        BankStatementPrinter consoleMock = mock(BankStatementPrinter.class);
-        BankClock clockMock = mock(BankClock.class);
+        IBankStatementPrinter consoleMock = mock(IBankStatementPrinter.class);
+        IBankClock clockMock = mock(IBankClock.class);
         BankAccount account = new PersonalBankAccount();
-        AccountService accountServiceMock = new ATMPersonalAccountService(consoleMock, clockMock, account);
+        IAccountService accountServiceMock = new ATMPersonalAccountService(consoleMock, clockMock, account);
         when(clockMock.getCurrentDateAsString()).thenReturn("10/01/2012", "13/01/2012", "14/01/2012");
 
         String expectedBankStatement = """

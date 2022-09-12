@@ -1,5 +1,5 @@
 package com.katas.bank.feedbackForUser;
 
-public interface BankStatementPrinter {
+public interface IBankStatementPrinter {
     void printBankStatement(String statement);
 }
