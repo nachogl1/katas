@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-public class BankAcceptanceTest {
+public class BankAcceptanceTest_Duplicated {
 
     @Test
     void givenAPredesignedUserActions_WhenUsingAPersonalAccountOnATMMachine_ThenSystemPrintsTheCorrectBankStatementCalculations() {
