@@ -1,2 +1,4 @@
-package com.katas.treeKata;public class NodeNotFound {
+package com.katas.treeKata;
+
+public class NodeNotFound extends RuntimeException {
 }

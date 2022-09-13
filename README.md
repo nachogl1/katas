@@ -28,3 +28,6 @@ to quickly identify if I am in front of an abstraction or its implementation.
 - NewBank is the name of the Bank Kata I did with Istvan as a collaborator. We had really nice discussions and learned 
 a lot from each other. Thanks mate!
 - I added Cucumber to play with it in the Bank Kata, it was fun to be honest
+- Working on the first version of the infamous exercise 'Transverse a Binary Tree', I will keep iterating until I get something decent. So far I would love 
+to make the code more readable, and avoid make the client casting everything when getting values and still leave the collection open for any type object.
+I am going to work on the three types of transversal: In order, preorder traversal and postorder traversal.
