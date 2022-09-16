@@ -52,11 +52,72 @@ public class TreeTests {
     }
 
     @Test
-    void givenSearchingForAKey_WhenItDoesNotExist_ThenCorrectExceptionThrown() {
+    void givenATree_WhenRunInOrderTraversalAlgorithm_ThenItReturnsElementsInIncreasingOrder() {
+        List<Integer> elements = getTestElementsToBeAddedToTestTree();
+
+        elements.forEach(newElement -> tree.add(newElement, newElement.toString()));
+        List<String> resultElements = tree.inOrderTraversal();
+        List<String> expectedElementsForInOrderTraversal = getExpectedElementsForInOrderTraversal(elements);
+
+        assertEquals(expectedElementsForInOrderTraversal, resultElements);
+    }
+
+    @Test
+    void givenATree_WhenRunInPreOrderTraversalAlgorithm_ThenItReturnsPreorderOrder() {
+        List<Integer> elements = getTestElementsToBeAddedToTestTree();
+
+        elements.forEach(newElement -> tree.add(newElement, newElement.toString()));
+        List<String> resultElements = tree.preOrderTraversal();
+        List<String> expectedElementsForPreOrderTraversal = getExpectedElementsForPreOrderTraversal();
+
+        assertEquals(expectedElementsForPreOrderTraversal, resultElements);
+    }
+
+    @Test
+    void givenATree_WhenRunInPostOrderTraversalAlgorithm_ThenItReturnsPostorderOrder() {
+        List<Integer> elements = getTestElementsToBeAddedToTestTree();
+
+        elements.forEach(newElement -> tree.add(newElement, newElement.toString()));
+        List<String> resultElements = tree.postOrderTraversal();
+        List<String> expectedElementsForPreOrderTraversal = getExpectedElementsForPostOrderTraversal();
+
+        assertEquals(expectedElementsForPreOrderTraversal, resultElements);
+    }
+
+    @Test
+    void givenSearchingForAKey_WhenItDoesNotExist_ThenNodeNotFoundExceptionThrown() {
         assertThrows(NodeNotFound.class, () -> {
             tree.getValueByKey(100);
         });
 
+    }
+
+    @Test
+    void givenSearchingForAKey_WhenItExists_ThenRepeatedElementNotAllowedExceptionIsThrown() {
+        tree.add(100, "100");
+        assertThrows(RepeatedElementNotAllowed.class, () -> {
+            tree.add(100, "100");
+        });
+
+    }
+
+    private List<Integer> getTestElementsToBeAddedToTestTree() {
+        return Arrays.asList(1, 12, 4, 65, 7, 43, 45, 34, 656, 233, 435, 2, 5, 5657);
+    }
+
+    private List<String> getExpectedElementsForPostOrderTraversal() {
+        //https://yongdanielliang.github.io/animation/web/BST.html
+        return Arrays.asList("2", "5", "7", "4", "34", "45", "43", "435", "233", "5657", "656", "65", "12", "1");
+    }
+
+    private List<String> getExpectedElementsForPreOrderTraversal() {
+        //https://yongdanielliang.github.io/animation/web/BST.html
+        return Arrays.asList("1", "12", "4", "2", "7", "5", "65", "43", "34", "45", "656", "233", "435", "5657");
+    }
+
+    private List<String> getExpectedElementsForInOrderTraversal(List<Integer> elements) {
+        //https://yongdanielliang.github.io/animation/web/BST.html
+        return Arrays.asList("1", "2", "4", "5", "7", "12", "34", "43", "45", "65", "233", "435", "656", "5657");
     }
 
 
