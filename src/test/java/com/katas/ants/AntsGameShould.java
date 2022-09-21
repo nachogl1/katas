@@ -93,14 +93,16 @@ public class AntsGameShould {
     }
 
     private void iterateGameFor(int iterations) {
-        IntStream.range(1,iterations+1).forEach((v)->game.iterate());
+        IntStream.range(1, iterations + 1).forEach((v) -> game.iterate());
     }
 
     private void assertAllWhitePointsInGridButBlacklistedPoints(AntGrid antGrid, List<SimpleEntry<Integer, Integer>> blacklistedPoints) {
-        antGrid.forEachCell((boolean[][] grid, int i, int j) -> {
+        AntGridFn function = (boolean[][] grid, int i, int j) -> {
             boolean expectedColor = isPointBlacklisted(blacklistedPoints, i, j) ? BLACK_SQUARE : WHITE_SQUARE;
             assertEquals(expectedColor, grid[i][j]);
-        });
+        };
+
+        antGrid.forEachCell(function);
     }
 
     private boolean isPointBlacklisted(List<SimpleEntry<Integer, Integer>> blacklistedPoints, int i, int j) {
