@@ -20,6 +20,7 @@ The key is to remember, that when pairing, we are not attacking each other but p
 to quickly identify if I am in front of an abstraction or its implementation.
 - About Hungarian Notation, I believe there is room for it when needed:  https://www.joelonsoftware.com/2005/05/11/making-wrong-code-look-wrong/
 
+
 ## Log
 
 - Rest of the katas are from the 'pre-Academy' era, so load of things need change even though the tests pass 
@@ -31,3 +32,4 @@ a lot from each other. Thanks mate!
 - Working on the first version of the infamous exercise 'Transverse a Binary Tree', I will keep iterating until I get something decent. So far I would love 
 to make the code more readable, and avoid make the client casting everything when getting values and still leave the collection open for any type object.
 I am going to work on the three types of transversal: In order, preorder traversal and postorder traversal.
+- Ant Kata Behaviour finished
