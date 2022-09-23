@@ -33,3 +33,4 @@ a lot from each other. Thanks mate!
 to make the code more readable, and avoid make the client casting everything when getting values and still leave the collection open for any type object.
 I am going to work on the three types of transversal: In order, preorder traversal and postorder traversal.
 - Ant Kata Behaviour finished
+- Text Processor kata started
