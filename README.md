@@ -19,7 +19,7 @@ The key is to remember, that when pairing, we are not attacking each other but p
 - Not a fan of Hungarian Notation but I find using 'I' before the name of my interfaces useful. Only for this case, as it allows me 
 to quickly identify if I am in front of an abstraction or its implementation.
 - About Hungarian Notation, I believe there is room for it when needed:  https://www.joelonsoftware.com/2005/05/11/making-wrong-code-look-wrong/
-
+-I do not like to use static, just because I do not feel comfortable mixing that concept and test doubles but sometimes is useful
 
 ## Log
 
@@ -34,3 +34,4 @@ to make the code more readable, and avoid make the client casting everything whe
 I am going to work on the three types of transversal: In order, preorder traversal and postorder traversal.
 - Ant Kata Behaviour finished
 - Text Processor kata started
+- First challenge of Text Processor Kata finished
