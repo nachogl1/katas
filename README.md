@@ -35,3 +35,4 @@ I am going to work on the three types of transversal: In order, preorder travers
 - Ant Kata Behaviour finished
 - Text Processor kata started
 - First challenge of Text Processor Kata finished
+- Boolean calculator finished. In the end, I still have ifs and temporal coupling pending
