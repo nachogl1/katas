@@ -16,7 +16,7 @@ public class TextProcessorWordSummaryFeature {
     @Given("the pre-defined test input text")
     public void thePreDefinedTestInputText() {
         processor = new TextProcessor();
-        testInputText = "Hello, this is an example for you to practice. You should grab this text and make it as your test case.";
+        testInputText = "Hello, hello, hello, Bye bye, Example";
     }
 
     @When("the system analyses the text")
@@ -35,18 +35,11 @@ public class TextProcessorWordSummaryFeature {
         return """
                 Those are the top 10 words used:
                                 
-                1. you
-                2. this
-                3. your
-                4. to
-                5. text
-                6. test
-                7. should
-                8. practice
-                9. make
-                10. it
+                1. hello
+                2. bye
+                3. example
                                 
-                The text has in total 21 words
+                The text has in total 6 words
                 """;
     }
 }
