@@ -16,7 +16,7 @@ public class Car implements Prototype {
     }
 
     @Override
-    public Prototype clone() {
+    public Car clone() {
         return new Car(this);
     }
 
@@ -47,6 +47,6 @@ public class Car implements Prototype {
     }
 
     private ObjectField getObjectFieldClone(Car carToCopy) {
-        return (ObjectField) carToCopy.getObjectField().clone();
+        return carToCopy.getObjectField().clone();
     }
 }

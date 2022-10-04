@@ -18,7 +18,7 @@ public class PrototypeTest {
         objectField = new ObjectField(9, "This is another String");
         original.setMyOriginalFields(9, "I am a string field", objectField);
 
-        cloned = (Car) original.clone();
+        cloned =  original.clone();
     }
 
     @Test
