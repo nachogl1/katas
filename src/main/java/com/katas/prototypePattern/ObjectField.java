@@ -15,7 +15,7 @@ public class ObjectField implements Prototype {
     }
 
     @Override
-    public Prototype makeCopy() {
+    public Prototype clone() {
         return new ObjectField(this);
     }
 

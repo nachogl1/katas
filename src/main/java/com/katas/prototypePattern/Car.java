@@ -9,14 +9,14 @@ public class Car implements Prototype {
     public Car() {
     }
 
-    private Car(Car car) {
-        this.primitiveField1 = car.getPrimitiveField_1();
-        this.stringField2 = car.getStringField_2();
-        this.objectField = car.objectField;//(ObjectField) car.getObjectField().makeCopy();
+    private Car(Car carToCopy) {
+        this.primitiveField1 = carToCopy.getPrimitiveField_1();
+        this.stringField2 = carToCopy.getStringField_2();
+        this.objectField = getObjectFieldClone(carToCopy);
     }
 
     @Override
-    public Prototype makeCopy() {
+    public Prototype clone() {
         return new Car(this);
     }
 
@@ -44,5 +44,9 @@ public class Car implements Prototype {
 
     public void setStringField2(String stringField2) {
         this.stringField2 = stringField2;
+    }
+
+    private ObjectField getObjectFieldClone(Car carToCopy) {
+        return (ObjectField) carToCopy.getObjectField().clone();
     }
 }
