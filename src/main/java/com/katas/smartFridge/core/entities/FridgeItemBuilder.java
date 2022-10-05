@@ -1,12 +1,14 @@
 package com.katas.smartFridge.core.entities;
 
+import java.time.LocalDateTime;
+
 public class FridgeItemBuilder {
 
     private static FridgeItemBuilder instance;
 
     private String barcode;
     private String name;
-    private String expiryDate;
+    private LocalDateTime expiryDate;
     private FridgeItemState state;
 
     private FridgeItemBuilder() {
@@ -30,7 +32,7 @@ public class FridgeItemBuilder {
         return this;
     }
 
-    public FridgeItemBuilder setExpiryDate(String expiryDate) {
+    public FridgeItemBuilder setExpiryDate(LocalDateTime expiryDate) {
         this.expiryDate = expiryDate;
         return this;
     }

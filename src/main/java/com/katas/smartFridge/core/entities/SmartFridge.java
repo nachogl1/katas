@@ -11,6 +11,7 @@ public class SmartFridge {
     private IOutputPrinter printer;
     private IClock clockDevice;
     private IStorage storage;
+    private FridgeItemFormatter formatter = new FridgeItemFormatter();
 
     public SmartFridge(IOutputPrinter printer, IStorage storage, IClock clockDevice) {
         this.printer = printer;
@@ -26,7 +27,7 @@ public class SmartFridge {
         throw new UnsupportedOperationException();
     }
 
-    public void scanAddedItem(FridgeItem newItem) {
+    public void addItem(FridgeItem newItem) {
         this.storage.checkIfItemExists(newItem);
         assignTimestampToItem(newItem);
         this.storage.add(newItem);
@@ -38,7 +39,8 @@ public class SmartFridge {
     }
 
     public void showDisplay() {
-        throw new UnsupportedOperationException();
+        String message = this.formatter.formatItemsToString(this.storage.findByAll(), clockDevice.getCurrentMoment());
+        this.printer.print(message);
     }
 
 

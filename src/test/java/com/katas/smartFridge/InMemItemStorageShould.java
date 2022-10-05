@@ -6,6 +6,7 @@ import com.katas.smartFridge.core.entities.RepeatedItemBarcodeFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import static com.katas.smartFridge.core.entities.FridgeItemBuilder.getFridgeItemBuilder;
@@ -21,7 +22,7 @@ public class InMemItemStorageShould {
     @BeforeEach
     void setUp() {
         storage = new InMemItemStorage();
-        item = getFridgeItemBuilder().setBarcode("1").setName("Milk").setExpiryDate("20/10/2021").setState(SEALED).build();
+        item = getFridgeItemBuilder().setBarcode("1").setName("Milk").setExpiryDate(LocalDateTime.of(2021,10,22,21,00)).setState(SEALED).build();
     }
 
     @Test

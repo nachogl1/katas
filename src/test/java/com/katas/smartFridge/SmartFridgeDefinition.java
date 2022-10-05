@@ -30,62 +30,68 @@ public class SmartFridgeDefinition {
 
     @When("a predefined series of steps of interactions are carried out")
     public void predefinedSeriesOfStepsOfInteractionsAreCarriedOut() {
-        fridge.signalFridgeDoorOpened();
-        fridge.scanAddedItem(getFridgeItemBuilder().setBarcode("1").setName("Milk").setExpiryDate("20/10/2021").setState(SEALED).build());
-        fridge.scanAddedItem(getFridgeItemBuilder().setBarcode("2").setName("Cheese").setExpiryDate("18/11/21").setState(SEALED).build());
-        fridge.scanAddedItem(getFridgeItemBuilder().setBarcode("3").setName("Beef").setExpiryDate("20/10/21").setState(SEALED).build());
-        fridge.scanAddedItem(getFridgeItemBuilder().setBarcode("4").setName("Lettuce").setExpiryDate("22/10/21").setState(SEALED).build());
-        fridge.signalFridgeDoorClosed();
+//        fridge.signalFridgeDoorOpened();
 
-        clockMock.simulateDayOver();
+        fridge.addItem(getFridgeItemBuilder().setBarcode("1").setName("Milk").setExpiryDate(LocalDateTime.of(2021, 10, 20, 21, 00)).setState(SEALED).build());
+        fridge.addItem(getFridgeItemBuilder().setBarcode("2").setName("Cheese").setExpiryDate(LocalDateTime.of(2021, 10, 18, 21, 00)).setState(SEALED).build());
+        fridge.addItem(getFridgeItemBuilder().setBarcode("3").setName("Beef").setExpiryDate(LocalDateTime.of(2021, 10, 20, 21, 00)).setState(SEALED).build());
+        fridge.addItem(getFridgeItemBuilder().setBarcode("4").setName("Lettuce").setExpiryDate(LocalDateTime.of(2021, 10, 22, 21, 00)).setState(SEALED).build());
+        //fridge.signalFridgeDoorClosed();
 
-        fridge.signalFridgeDoorOpened();
-        fridge.signalFridgeDoorClosed();
+        simulateDayOver();
 
-        fridge.signalFridgeDoorOpened();
-        fridge.signalFridgeDoorClosed();
+        //fridge.signalFridgeDoorOpened();
+        //fridge.signalFridgeDoorClosed();
 
-        fridge.signalFridgeDoorOpened();
+        //fridge.signalFridgeDoorOpened();
+        //fridge.signalFridgeDoorClosed();
+
+        //fridge.signalFridgeDoorOpened();
         fridge.scanRemovedItem("1");
-        fridge.signalFridgeDoorClosed();
+        //fridge.signalFridgeDoorClosed();
 
-        fridge.signalFridgeDoorOpened();
-        fridge.scanAddedItem(getFridgeItemBuilder().setBarcode("5").setName("Milk").setExpiryDate("26/10/21").setState(OPENED).build());
-        fridge.scanAddedItem(getFridgeItemBuilder().setBarcode("6").setName("Peppers").setExpiryDate("23/10/21").setState(OPENED).build());
-        fridge.signalFridgeDoorClosed();
+        //fridge.signalFridgeDoorOpened();
 
-        clockMock.simulateDayOver();
 
-        fridge.signalFridgeDoorOpened();
+        fridge.addItem(getFridgeItemBuilder().setBarcode("5").setName("Milk").setExpiryDate(LocalDateTime.of(2021, 10, 26, 21, 00)).setState(OPENED).build());
+        fridge.addItem(getFridgeItemBuilder().setBarcode("6").setName("Peppers").setExpiryDate(LocalDateTime.of(2021, 10, 23, 21, 00)).setState(OPENED).build());
+        //fridge.signalFridgeDoorClosed();
+
+        simulateDayOver();
+
+        //fridge.signalFridgeDoorOpened();
         fridge.scanRemovedItem("3");
         fridge.scanRemovedItem("4");
-        fridge.signalFridgeDoorClosed();
+        //fridge.signalFridgeDoorClosed();
+        //fridge.signalFridgeDoorOpened();
+        fridge.addItem(getFridgeItemBuilder().setBarcode("7").setName("Lettuce").setExpiryDate(LocalDateTime.of(2021, 10, 22, 21, 00)).setState(OPENED).build());
+        //fridge.signalFridgeDoorClosed();
 
-        fridge.signalFridgeDoorOpened();
-        fridge.scanAddedItem(getFridgeItemBuilder().setBarcode("7").setName("Lettuce").setExpiryDate("22/10/21").setState(OPENED).build());
-        fridge.signalFridgeDoorClosed();
+        //fridge.signalFridgeDoorOpened();
+        //fridge.signalFridgeDoorClosed();
 
-        fridge.signalFridgeDoorOpened();
-        fridge.signalFridgeDoorClosed();
-
-        clockMock.simulateDayOver();
+        simulateDayOver();
     }
 
 
     @Then("the system displays the food that is left and their details correctly")
     public void theSystemDisplaysTheFoodThatIsLeftAndTheirDetailsCorrectly() {
 
-        String messageAboutMilk = "EXPIRED: Milk";
-        String messageAboutLettuce = "Lettuce: 0 days remaining";
-        String messageAboutPeppers = "Peppers: 1 day remaining";
-        String messageAboutCheese = " Cheese: 31 days remaining";
+        String message = """
+                EXPIRED: Cheese
+                Milk: 5 days remaining
+                Peppers: 2 days remaining
+                Lettuce: 1 days remaining
+                """;
 
         fridge.showDisplay();
 
-        verify(consoleMock).print(messageAboutMilk);
-        verify(consoleMock).print(messageAboutLettuce);
-        verify(consoleMock).print(messageAboutPeppers);
-        verify(consoleMock).print(messageAboutCheese);
+        verify(consoleMock).print(message);
+    }
+
+    private void simulateDayOver() {
+        LocalDateTime currentTime = clockMock.getCurrentMoment();
+        when(clockMock.getCurrentMoment()).thenReturn(currentTime.plusDays(1));
     }
 
 }

@@ -1,17 +1,18 @@
 package com.katas.smartFridge.core.entities;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class FridgeItem {
 
     private final String barcode;
     private final String name;
-    private final String expiryDate;
+    private final LocalDateTime expiryDate;
     private final FridgeItemState state;
     private LocalDateTime timestampOfScan;
 
 
-    FridgeItem(String barcode, String name, String expiryDate, FridgeItemState state) {
+    FridgeItem(String barcode, String name, LocalDateTime expiryDate, FridgeItemState state) {
         this.barcode = barcode;
         this.name = name;
         this.expiryDate = expiryDate;
@@ -30,17 +31,27 @@ public class FridgeItem {
         return name;
     }
 
-    public String getExpiryDate() {
-        return expiryDate;
-    }
-
-    public FridgeItemState getState() {
-        return state;
-    }
-
     public LocalDateTime getTimestampOfScan() {
         return timestampOfScan;
     }
 
+    public String getSummaryOfItemForDate(LocalDateTime currentTime) {
+        final StringBuilder sb = new StringBuilder();
+        sb
+                .append(computeIfExpiry(currentTime))
+                .append(this.name)
+                .append(getRemainingDays(currentTime));
 
+        return sb.toString();
+    }
+
+    private String computeIfExpiry(LocalDateTime currentTime) {
+        int daysToExpiry = (int) currentTime.until(expiryDate, ChronoUnit.DAYS);
+        return daysToExpiry < 0 ? "EXPIRED: " : "";
+    }
+
+    private String getRemainingDays(LocalDateTime currentTime) {
+        int daysToExpiry = (int) currentTime.until(expiryDate, ChronoUnit.DAYS);
+        return daysToExpiry > -1 ? ": " + String.valueOf(daysToExpiry) + " days remaining" : "";
+    }
 }
