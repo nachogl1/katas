@@ -5,7 +5,7 @@ import com.katas.drivingLicense.CoolDriver;
 public class DrivingLicenceSecondStepHandler extends DriverLicenceHandler {
 
     @Override
-    protected String stepLogic(CoolDriver driver) {
+    protected String executeStepLogic(CoolDriver driver) {
 
         String date = driver.getDate().toString();
         char decade = extractDecade(date);

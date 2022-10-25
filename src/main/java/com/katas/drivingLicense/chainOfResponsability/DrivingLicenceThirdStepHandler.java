@@ -4,7 +4,7 @@ import com.katas.drivingLicense.CoolDriver;
 
 public class DrivingLicenceThirdStepHandler extends DriverLicenceHandler {
     @Override
-    protected String stepLogic(CoolDriver driver) {
+    protected String executeStepLogic(CoolDriver driver) {
         String resultOfCurrentStep = "";
         String date = driver.getDate().toString();
 

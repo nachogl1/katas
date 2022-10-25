@@ -6,7 +6,7 @@ public class DrivingLicenceFirstStepHandler extends DriverLicenceHandler {
 
 
     @Override
-    protected String stepLogic(CoolDriver driver) {
+    protected String executeStepLogic(CoolDriver driver) {
 
         String resultOfCurrentStep = driver.getSurname();
         resultOfCurrentStep = addTrailing9s(resultOfCurrentStep);

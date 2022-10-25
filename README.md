@@ -39,3 +39,4 @@ I am going to work on the three types of transversal: In order, preorder travers
 - Prototype Pattern Game
 - Fridge Kata Done
 - Driving Licence Kata 
+- Adding Game Of Life v2, quicker. However the v1 is wrong

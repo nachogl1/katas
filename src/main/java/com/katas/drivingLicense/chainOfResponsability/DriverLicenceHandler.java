@@ -12,15 +12,15 @@ public abstract class DriverLicenceHandler {
     }
 
     public final String handle(CoolDriver driver) {
-        this.licenceOnProgress += stepLogic(driver);
+        this.licenceOnProgress += executeStepLogic(driver);
         return handleNext(driver);
     }
 
-    void appendProcess(String licenceOnProgress) {
+    void setLicenceOnProgress(String licenceOnProgress) {
         this.licenceOnProgress += licenceOnProgress;
     }
 
-    protected abstract String stepLogic(CoolDriver driver);
+    protected abstract String executeStepLogic(CoolDriver driver);
 
     private String handleNext(CoolDriver driver) {
         if (this.nextHandler == null) return this.licenceOnProgress.toUpperCase();
@@ -31,6 +31,6 @@ public abstract class DriverLicenceHandler {
 
 
     private void prepare(String licenceOnProgress) {
-        appendProcess(licenceOnProgress);
+        setLicenceOnProgress(licenceOnProgress);
     }
 }

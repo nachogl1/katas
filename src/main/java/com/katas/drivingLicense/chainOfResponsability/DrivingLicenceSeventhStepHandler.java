@@ -4,7 +4,7 @@ import com.katas.drivingLicense.CoolDriver;
 
 public class DrivingLicenceSeventhStepHandler extends  DriverLicenceHandler{
     @Override
-    protected String stepLogic(CoolDriver driver) {
+    protected String executeStepLogic(CoolDriver driver) {
         return "9AA";
     }
 }
