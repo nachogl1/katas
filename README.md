@@ -1,3 +1,4 @@
+
 # Katas Playground
 
 I chose to have all my katas in the same repo using Trunk-Based development. They are independent exercises, and I find
@@ -20,6 +21,10 @@ The key is to remember, that when pairing, we are not attacking each other but p
 to quickly identify if I am in front of an abstraction or its implementation.
 - About Hungarian Notation, I believe there is room for it when needed:  https://www.joelonsoftware.com/2005/05/11/making-wrong-code-look-wrong/
 -I do not like to use static, just because I do not feel comfortable mixing that concept and test doubles but sometimes is useful
+- Integration Vs Acceptance: Integration focuses on checking that the units tested in Unite tests work correctly together. I have the feeling that for this
+it is necessary a big system because for example in the case of the katas, nobody mentions integration tests ut they go straight to acceptance. Integration 
+tests are still technically focused and not from the user perspective. Whereas, acceptance **I would say DO NOT use mocks**, and they have a user perspective. 
+This makes sense in katas just to test that the feature (small or big) makes sense from a users' perspective.
 
 ## Log
 
@@ -40,3 +45,4 @@ I am going to work on the three types of transversal: In order, preorder travers
 - Fridge Kata Done
 - Driving Licence Kata 
 - Adding Game Of Life v2, quicker. However the v1 is wrong
+- At this point, I realised that I have been using mocks in some acceptance tests. I am not going to go crazy to change them, but I am aware.
