@@ -18,7 +18,7 @@ public class GOL_V2 {
 
         for (int x = 0; x < resultGrid.length; x++) {
             for (int y = 0; y < resultGrid[x].length; y++) {
-                resultGrid[x][y] = checkIfStillPartying(x, y);
+                resultGrid[x][y] = isAliveForNextGen(x, y);
             }
         }
 
@@ -33,7 +33,7 @@ public class GOL_V2 {
         return resultGrid;
     }
 
-    private boolean checkIfStillPartying(int x, int y) {
+    private boolean isAliveForNextGen(int x, int y) {
         int totalNeighbors = calculateLiveNeighbors(x, y);
 
         return (grid[x][y] && (totalNeighbors == 3 || totalNeighbors == 2))
@@ -42,22 +42,22 @@ public class GOL_V2 {
     }
 
     private int calculateLiveNeighbors(int x, int y) {
-        return gimmeOneIfAlive(x - 1, y - 1)
-                + gimmeOneIfAlive(x - 1, y)
-                + gimmeOneIfAlive(x - 1, y + 1)
-                + gimmeOneIfAlive(x, y - 1)
-                + gimmeOneIfAlive(x, y + 1)
-                + gimmeOneIfAlive(x + 1, y - 1)
-                + gimmeOneIfAlive(x + 1, y)
-                + gimmeOneIfAlive(x + 1, y + 1);
+        return returnOneIfAlive(x - 1, y - 1)
+                + returnOneIfAlive(x - 1, y)
+                + returnOneIfAlive(x - 1, y + 1)
+                + returnOneIfAlive(x, y - 1)
+                + returnOneIfAlive(x, y + 1)
+                + returnOneIfAlive(x + 1, y - 1)
+                + returnOneIfAlive(x + 1, y)
+                + returnOneIfAlive(x + 1, y + 1);
     }
 
-    private int gimmeOneIfAlive(int x, int y) {
+    private int returnOneIfAlive(int x, int y) {
         boolean result = false;
         try {
             result = this.grid[x][y];
         } catch (Exception e) {
-            //Nothing to see here, keep going sir
+            //Me being cheeky
         }
         return result ? 1 : 0;
     }
