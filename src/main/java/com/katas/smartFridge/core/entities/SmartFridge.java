@@ -19,14 +19,6 @@ public class SmartFridge {
         this.clockDevice = clockDevice;
     }
 
-    public void signalFridgeDoorOpened() {
-        throw new UnsupportedOperationException();
-    }
-
-    public void signalFridgeDoorClosed() {
-        throw new UnsupportedOperationException();
-    }
-
     public void addItem(FridgeItem newItem) {
         this.storage.checkIfItemExists(newItem);
         assignTimestampToItem(newItem);
@@ -34,8 +26,7 @@ public class SmartFridge {
     }
 
     public void scanRemovedItem(String idOfItemToBeRemoved) {
-        if (this.storage.remove(idOfItemToBeRemoved) == null)
-            throw new NoSuchElementException();
+        if (this.storage.remove(idOfItemToBeRemoved) == null) throw new NoSuchElementException();
     }
 
     public void showDisplay() {
