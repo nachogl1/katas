@@ -47,3 +47,4 @@ I am going to work on the three types of transversal: In order, preorder travers
 - Adding Game Of Life v2, quicker. However, the v1 is wrong
 - At this point, I realised that I have been using mocks in some acceptance tests. I am not going to go crazy to change them, but I am aware.
 - Started Perfect Power Kata but not finished
+- CamelCase parser kata done
