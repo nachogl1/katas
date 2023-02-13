@@ -7,8 +7,7 @@ public class LikeDetector {
     public String getMessageForLikes(String[] names) {
         String peopleWhoLikesIt =  processNamesTogether(names);
         String likeWord = processLikeWord(names);
-        String resultMessage = String.format("%s %s this", peopleWhoLikesIt, likeWord);
-        return resultMessage;
+        return String.format("%s %s this", peopleWhoLikesIt, likeWord);
     }
 
     private String processLikeWord(String[] names) {
